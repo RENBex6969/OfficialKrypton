@@ -67,12 +67,12 @@ Section:NewButton("Send Suggestion", "Send", function()
                 ["name"] = "Executor",
                 ["value"] = executor,
                 ["inline"] = true
-               }
+               },
                {
                 ["name"] = "HWID",
                 ["value"] = HWID,
                 ["inline"] = true
-               }
+               },
             },
              ["footer"] = {
               ["text"] = "Time Sent: " .. timestamp
